@@ -1,0 +1,92 @@
+<html>
+    <body>
+
+        {% if mode %}
+            <a href="add/">upload</a>
+            hi {{name}} <a href="/logout">Logout</a> <br> 
+            <h1>my auctioned item items</h1>
+
+            {% for i in sold %}
+            <br>
+            h1
+            <img src = "{{i.itemId.image.url}}" width="200" height="200">
+            <a href="/{{i.itemId.id}}">{{i.itemId.name}}</a>
+                {{i.itemId.category}}
+                {{i.itemId.user}}
+                {{i.itemId.initialPrice}}
+                {{i.itemId.closingDate}}
+
+            <h3>buyer info.</h3>
+                {{i.custId.name}}
+                {{i.custId.contact}}
+                {{i.price}}
+
+            <br>
+            <br>
+            <br>
+            <br>
+
+            {% endfor %}
+
+
+        {% else %}
+
+            {% if name %}
+                hi {{name}} <a href="/logout">Logout</a> <br> 
+
+                <a href="bid">my bid</a>
+                <a href=""><h3>cart</h3></a>
+
+            {% else %}
+            <a href="/login"><h1>login</h1></a>
+            {% endif %}
+
+
+                {% for i in category %}
+                    <a href="/?category={{i.categoryId}}">{{i.name}}</a>
+                    <br>
+                {% endfor %}
+
+
+
+                {% for i in data %}
+                <br>
+
+                <img src = "{{i.image.url}}" width="200" height="200">
+                    <a href="/{{i.id}}">{{i.name}}</a>
+                    {{i.category}}
+
+                    {% if name %}
+                    <form action="/" method="post">{% csrf_token %}
+                    <input hidden type="text" value = "{{i.id}}" name = 'product'>
+                    <input type="submit" value = "Add to Cart">
+                    </form>
+                    {% endif %}
+
+                {% endfor %}
+
+
+                <h1>Sold Items</h1>
+                {% for i in sold %}
+                <img src = "{{i.itemId.image.url}}" width="200" height="200">
+                <a href="/{{i.itemId.id}}">{{i.itemId.name}}</a>
+                    {{i.itemId.category}}
+                    {{i.itemId.user}}
+                    {{i.itemId.initialPrice}}
+                    {{i.itemId.closingDate}}
+
+                <h3>buyer info.</h3>
+                    {{i.custId.name}}
+                    {{i.custId.contact}}
+                    {{i.price}}
+                    <br>
+            <br>
+            <br>
+            <br>
+
+                {% endfor %}
+        {% endif %}
+        
+
+    </body>
+</html>

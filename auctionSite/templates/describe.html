@@ -1,0 +1,51 @@
+<html>
+    <body>
+                
+            
+        {% for i in data %}
+        <img src = "{{i.image.url}}" width="500" height="500">
+            {{i.name}}
+            {{i.category}}
+            {{i.user}}
+            {{i.initialPrice}}
+            {{i.closingDate}}
+
+
+            <br>
+            {{bidd.custId}}
+            {{bidd.bidd}}
+            <br>
+            {% if res %}
+                <p>rating for product is {{res}}</p>
+            {% else %}
+                <p>not enough comment to rate the item. </p>
+            {% endif %}
+            <br>
+
+            {% if not i.status %}
+
+                <form method="post"> {% csrf_token %}
+                    <label for="bidd"><b>Raise Bidd</b></label>
+                    <input placeholder="Enter the value of bidd" name="bid" required>
+                        
+                    <button type="submit">Enter</button>
+                </form>
+            {% endif %}
+        {% endfor %}
+
+        
+
+        <form action="." method = 'post'>{% csrf_token %}
+            <label for="comment"><b>Comments</b></label>
+            <br>
+            {% for i in message %}
+                <strong>{{i.comment}}</strong> by some annonymous user
+                <br>
+            {% endfor %}
+            <input placeholder="your comment " name="message" required>
+                
+            <button type="submit">Enter</button>
+        </form>
+        <a href="/"><button type="button" class="cancelbtn">Cancel</button></a>
+    </body>
+</html>

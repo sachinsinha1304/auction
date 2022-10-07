@@ -1,0 +1,27 @@
+<form method="post"> {% csrf_token %}
+
+    </div>
+  
+    <div class="container">
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" required>
+  
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+  
+      <button type="submit">Login</button>
+      <label>
+        <input type="checkbox" checked="checked" name="buyer"> are you seller
+      </label>
+    </div>
+  
+    <div >
+      <a href="/"><button type="button" class="cancelbtn">Cancel</button></a>
+      <a href="/password/"><span class="psw">Forgot password?</span></a>
+      <span class="psw">create <a href="/signup/">new account</a></span>
+    </div>
+    {% if status %}
+      {{status}}
+    {% endif %}
+
+  </form> 

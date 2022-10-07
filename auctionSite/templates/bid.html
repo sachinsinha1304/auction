@@ -1,0 +1,15 @@
+
+<html>
+    <body>
+      {% if obj %}
+        {% for i in obj %}
+          {{i.itemId}} {{i.bidd}} {{i.itemId.category}} <br><img src = "{{i.itemId.image.url}}" width="200" height="200">
+        <br>
+        {% endfor %}
+      {% else %}
+        <p>no item you have bidded is on sale</p>
+
+      {% endif %}
+      <a href="/"><button type="button" class="cancelbtn">Cancel</button></a>
+    </body>
+</html>
